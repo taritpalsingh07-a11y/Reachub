@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ReachHub - VIP Fonts & Gaming Name Generator</title>
+  <meta name="description" content="Generate 40+ stylish names, aesthetic fonts, and VIP symbols for BGMI, Free Fire, Instagram Bio & WhatsApp.">
+  <style>
+    :root {
+      --bg: #0d1117;
+      --card-bg: #161b22;
+      --border: #30363d;
+      --accent: #8b5cf6;
+      --accent-glow: #06b6d4;
+      --text: #f0f6fc;
+      --text-muted: #8b949e;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Navigation */
+    header {
+      background-color: rgba(22, 27, 34, 0.85);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 800;
+      font-size: 1.2rem;
+      letter-spacing: -0.5px;
+    }
+
+    .badge-vip {
+      background: linear-gradient(135deg, var(--accent), var(--accent-glow));
+      color: #fff;
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 999px;
+      text-transform: uppercase;
+    }
+
+    /* Container */
+    main {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 24px 16px;
+      flex: 1;
+      width: 100%;
+    }
+
+    .hero-title {
+      font-size: 1.8rem;
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 8px;
+      background: linear-gradient(135deg, #fff, #a5b4fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+      color: var(--text-muted);
+      text-align: center;
+      font-size: 0.95rem;
+      margin-bottom: 24px;
+    }
+
+    /* Ad Placeholder Container */
+    .ad-banner-slot {
+      background-color: var(--card-bg);
+      border: 1px dashed var(--border);
+      border-radius: 8px;
+      text-align: center;
+      padding: 16px;
+      margin: 16px 0;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Input Section */
+    .input-wrapper {
+      position: relative;
+      margin-bottom: 24px;
+    }
+
+    .text-input {
+      width: 100%;
+      background-color: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      font-size: 1.1rem;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .text-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.25);
+    }
+
+    /* Results Grid */
+    .grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .font-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      transition: transform 0.15s ease, border-color 0.15s ease;
+    }
+
+    .font-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    .font-text {
+      font-size: 1.1rem;
+      word-break: break-all;
+      flex: 1;
+    }
+
+    .copy-btn {
+      background-color: #21262d;
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.85rem;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+
+    .copy-btn:hover {
+      background: linear-gradient(135deg, var(--accent), var(--accent-glow));
+      border-color: transparent;
+      color: #fff;
+    }
+
+    /* 5-Second Modal */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      padding: 16px;
+    }
+
+    .modal-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      max-width: 420px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    }
+
+    .modal-timer {
+      display: inline-block;
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--accent-glow);
+      background: rgba(6, 182, 212, 0.1);
+      border: 1px solid rgba(6, 182, 212, 0.3);
+      padding: 6px 16px;
+      border-radius: 999px;
+      margin: 16px 0;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 24px 16px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand">
+      ReachHub <span class="badge-vip">VIP</span>
+    </div>
+  </header>
+
+  <main>
+    <h1 class="hero-title">VIP Fonts & Gaming Nickname Styler</h1>
+    <p class="hero-subtitle">Convert normal text into stylish fonts & gaming frames for BGMI, Free Fire & Instagram</p>
+
+    <!-- Top Ad Placeholder Slot -->
+    <div id="top-ad-slot" class="ad-banner-slot">
+      <span>Advertisement Space (320x50 / 728x90)</span>
+    </div>
+
+    <div class="input-wrapper">
+      <input type="text" id="nameInput" class="text-input" placeholder="Type name here (e.g., Toxic, Killer, Royal)..." value="ReachHub">
+    </div>
+
+    <div id="fontResults" class="grid">
+      <!-- Font cards will be dynamically injected here -->
+    </div>
+
+    <!-- Mid Ad Placeholder Slot -->
+    <div id="bottom-ad-slot" class="ad-banner-slot">
+      <span>Advertisement Space (Responsive Banner)</span>
+    </div>
+  </main>
+
+  <!-- 5-Second Modal -->
+  <div id="copyModal" class="modal-overlay">
+    <div class="modal-card">
+      <h3 style="font-size: 1.2rem;">Generating VIP Clipboard Copy</h3>
+      <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 4px;">Please wait while your styled text is prepared...</p>
+      
+      <div id="countdownBadge" class="modal-timer">Ready in 5s</div>
+
+      <!-- High-Retention Modal Ad Slot -->
+      <div id="modal-ad-slot" class="ad-banner-slot" style="min-height: 120px; display: flex; align-items: center; justify-content: center;">
+        <span>Sponsored Ad Unit (300x250)</span>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>Free stylish fonts for Instagram bios and VIP nicknames for BGMI & Free Fire.</p>
+    <p style="margin-top: 6px;">&copy; ReachHub Tools. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const input = document.getElementById('nameInput');
+    const container = document.getElementById('fontResults');
+    const modal = document.getElementById('copyModal');
+    const countdownBadge = document.getElementById('countdownBadge');
+
+    let textToCopy = '';
+    let countdownInterval = null;
+
+    // Unicode font maps
+    const smallCapsMap = {'a':'ᴀ','b':'ʙ','c':'ᴄ','d':'ᴅ','e':'ᴇ','f':'ꜰ','g':'ɢ','h':'ʜ','i':'ɪ','j':'ᴊ','k':'ᴋ','l':'ʟ','m':'ᴍ','n':'ɴ','o':'ᴏ','p':'ᴘ','q':'ǫ','r':'ʀ','s':'s','t':'ᴛ','u':'ᴜ','v':'ᴠ','w':'ᴡ','x':'x','y':'ʏ','z':'ᴢ'};
+    const doubleStruckMap = {'a':'𝕒','b':'𝕓','c':'𝕔','d':'𝕕','e':'𝕖','f':'𝕗','g':'𝕘','h':'𝕙','i':'𝕚','j':'𝕛','k':'𝕜','l':'𝕝','m':'𝕞','n':'𝕟','o':'𝕠','p':'𝕡','q':'𝕢','r':'𝕣','s':'𝕤','t':'𝕥','u':'𝕦','v':'𝕧','w':'𝕨','x':'𝕩','y':'𝕪','z':'𝕫','A':'𝔸','B':'𝔹','C':'ℂ','D':'𝔻','E':'𝔼','F':'𝔽','G':'𝔾','H':'ℍ','I':'𝕀','J':'𝕁','K':'𝕂','L':'𝕃','M':'𝕄','N':'ℕ','O':'𝕆','P':'ℙ','Q':'ℚ','R':'ℝ','S':'𝕊','T':'𝕋','U':'𝕌','V':'𝕍','W':'𝕎','X':'𝕏','Y':'𝕐','Z':'ℤ'};
+    const scriptMap = {'a':'𝒶','b':'𝒷','c':'𝒸','d':'𝒹','e':'ℯ','f':'𝒻','g':'ℊ','h':'𝒽','i':'𝒾','j':'𝒿','k':'𝓀','l':'𝓁','m':'𝓂','n':'𝓃','o':'ℴ','p':'𝓅','q':'𝓆','r':'𝓇','s':'𝓈','t':'𝓉','u':'𝓊','v':'𝓋','w':'𝓌','x':'𝓍','y':'𝓎','z':'𝓏','A':'𝒜','B':'ℬ','C':'𝒞','D':'𝒟','E':'ℰ','F':'ℱ','G':'𝒢','H':'ℋ','I':'ℐ','J':'𝒥','K':'𝒦','L':'ℒ','M':'ℳ','N':'𝒩','O':'𝒪','P':'𝒫','Q':'𝒢','R':'ℛ','S':'𝒮','T':'𝒯','U':'𝒰','V':'𝒱','W':'𝒲','X':'𝒳','Y':'𝒴','Z':'𝒵'};
+
+    function transform(str, map) {
+      return str.split('').map(ch => map[ch] || map[ch.toLowerCase()] || ch).join('');
+    }
+
+    function generateStyles(base) {
+      if (!base.trim()) base = "ReachHub";
+      return [
+        transform(base, smallCapsMap),
+        transform(base, doubleStruckMap),
+        transform(base, scriptMap),
+        `꧁༒${base}༒꧂`,
+        `亗 ${base} 亗`,
+        `メ${base}メ`,
+        `▄︻デ${base}══━一`,
+        `々${base}々`,
+        `★${base}★`,
+        `⚡${base}⚡`,
+        `〖${base}〗`,
+        `༺${base}༻`,
+        `『V I P』${base}`,
+        `〆${base}〆`,
+        `★彡[${base}]彡★`,
+        `【${base}】`
+      ];
+    }
+
+    function render() {
+      const val = input.value;
+      const styles = generateStyles(val);
+      container.innerHTML = '';
+
+      styles.forEach((item) => {
+        const card = document.createElement('div');
+        card.className = 'font-card';
+
+        const textSpan = document.createElement('span');
+        textSpan.className = 'font-text';
+        textSpan.textContent = item;
+
+        const btn = document.createElement('button');
+        btn.className = 'copy-btn';
+        btn.textContent = 'Copy';
+        btn.onclick = () => startCopyFlow(item, btn);
+
+        card.appendChild(textSpan);
+        card.appendChild(btn);
+        container.appendChild(card);
+      });
+    }
+
+    function startCopyFlow(text, btnElement) {
+      textToCopy = text;
+      let timeLeft = 5;
+      countdownBadge.textContent = `Ready in ${timeLeft}s`;
+      modal.style.display = 'flex';
+
+      if (countdownInterval) clearInterval(countdownInterval);
+
+      countdownInterval = setInterval(() => {
+        timeLeft--;
+        if (timeLeft > 0) {
+          countdownBadge.textContent = `Ready in ${timeLeft}s`;
+        } else {
+          clearInterval(countdownInterval);
+          navigator.clipboard.writeText(textToCopy).then(() => {
+            modal.style.display = 'none';
+            btnElement.textContent = 'Copied! ✓';
+            btnElement.style.background = '#10b981';
+            btnElement.style.color = '#fff';
+            setTimeout(() => {
+              btnElement.textContent = 'Copy';
+              btnElement.style.background = '';
+              btnElement.style.color = '';
+            }, 2000);
+          });
+        }
+      }, 1000);
+    }
+
+    input.addEventListener('input', render);
+    render();
+  </script>
+</body>
+</html>
